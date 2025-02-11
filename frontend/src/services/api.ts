@@ -19,20 +19,28 @@ export interface Service {
   price: string
 }
 
+import { ApiResponse } from './types'
+
 export const getInterviews = async (): Promise<Interview[]> => {
   const response = await fetch(`${API_URL}/api/interviews`)
   if (!response.ok) throw new Error('Failed to fetch interviews')
-  return response.json()
+  const data: ApiResponse<Interview[]> = await response.json()
+  if (data.error) throw new Error(data.error)
+  return data.data || []
 }
 
 export const getCompanyInterviews = async (company: string): Promise<Interview[]> => {
   const response = await fetch(`${API_URL}/api/interviews/${encodeURIComponent(company)}`)
   if (!response.ok) throw new Error('Failed to fetch company interviews')
-  return response.json()
+  const data: ApiResponse<Interview[]> = await response.json()
+  if (data.error) throw new Error(data.error)
+  return data.data || []
 }
 
 export const getServices = async (): Promise<Service[]> => {
   const response = await fetch(`${API_URL}/api/services`)
   if (!response.ok) throw new Error('Failed to fetch services')
-  return response.json()
+  const data: ApiResponse<Service[]> = await response.json()
+  if (data.error) throw new Error(data.error)
+  return data.data || []
 }

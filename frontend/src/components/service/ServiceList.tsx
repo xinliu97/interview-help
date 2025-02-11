@@ -1,16 +1,32 @@
-import { useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { useState, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { getServices } from '@/services/api'
+import type { Service } from '@/services/api'
 
 const ServiceList = () => {
   const [language, setLanguage] = useState<'zh' | 'en'>('zh')
   
-  const { data: services = [], isLoading, error } = useQuery({
-    queryKey: ['services'],
-    queryFn: getServices,
-  })
+  const [services, setServices] = useState<Service[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        setIsLoading(true)
+        const data = await getServices()
+        setServices(data)
+        setIsLoading(false)
+      } catch (err) {
+        console.error('Error:', err)
+        setError(err instanceof Error ? err.message : 'Failed to fetch services')
+        setIsLoading(false)
+      }
+    }
+    
+    fetchServices()
+  }, [])
 
   if (isLoading) {
     return <div className="text-center py-8">Loading...</div>
