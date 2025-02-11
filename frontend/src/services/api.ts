@@ -1,6 +1,23 @@
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
-
 import { ApiResponse } from './types'
+
+// Get API URL based on environment configuration
+const API_URL = (() => {
+  const useProdApi = import.meta.env.VITE_USE_PROD_API === 'true'
+  const devUrl = import.meta.env.VITE_API_URL
+  const prodUrl = import.meta.env.VITE_PROD_API_URL
+
+  if (useProdApi && !prodUrl) {
+    console.warn('Production API URL not configured. Using development URL.')
+    return devUrl || 'http://localhost:8000'
+  }
+
+  if (!devUrl && !useProdApi) {
+    console.warn('Development API URL not configured. Using default localhost:8000')
+    return 'http://localhost:8000'
+  }
+
+  return useProdApi ? prodUrl : devUrl
+})()
 
 export interface Interview {
   id: string
