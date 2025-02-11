@@ -1,9 +1,13 @@
 {
   "name": "interview-help-backend",
   "type": "go",
+  "main": "main.go",
   "port": 8000,
   "env": {
     "ENV": "production",
-    "ALLOWED_ORIGINS": "https://interview-experience-website-koqtpmwx.devinapps.com"
+    "ALLOWED_ORIGINS": "https://interview-experience-website-koqtpmwx.devinapps.com,http://localhost:4173,http://localhost:5173"
+  },
+  "build": {
+    "cmd": "go build -o app ."
   }
 }
