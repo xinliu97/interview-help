@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: interview-help-backend
+    env: go
+    buildCommand: go build -o app .
+    startCommand: ./app
+    envVars:
+      - key: PORT
+        value: 8000
+      - key: ENV
+        value: production
+      - key: ALLOWED_ORIGINS
+        value: https://interview-experience-website-koqtpmwx.devinapps.com,http://localhost:4173,http://localhost:5173
+    healthCheckPath: /api/services
+    autoDeploy: true
+    plan: free
