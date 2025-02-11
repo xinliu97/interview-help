@@ -1,0 +1,9 @@
+{
+  "name": "interview-help-backend",
+  "type": "go",
+  "port": 8000,
+  "env": {
+    "ENV": "production",
+    "ALLOWED_ORIGINS": "https://interview-experience-website-koqtpmwx.devinapps.com"
+  }
+}
