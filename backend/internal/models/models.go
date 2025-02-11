@@ -1,0 +1,78 @@
+package models
+
+type Interview struct {
+    ID          string   `json:"id"`
+    Company     string   `json:"position"`
+    Position    string   `json:"position"`
+    ContentZH   string   `json:"content_zh"`
+    ContentEN   string   `json:"content_en"`
+    Tags        []string `json:"tags"`
+    CreateTime  string   `json:"create_time"`
+}
+
+type Service struct {
+    ID          string `json:"id"`
+    NameZH      string `json:"name_zh"`
+    NameEN      string `json:"name_en"`
+    DescZH      string `json:"desc_zh"`
+    DescEN      string `json:"desc_en"`
+    Price       string `json:"price"`
+}
+
+// Sample data for development
+var SampleInterviews = []Interview{
+    {
+        ID:         "1",
+        Company:    "Google",
+        Position:   "Software Engineer",
+        ContentZH:  "面试过程包括系统设计和算法题。首轮是算法题，主要考察数据结构和算法优化。第二轮是系统设计，讨论了分布式系统的扩展性问题。",
+        ContentEN:  "The interview process included system design and algorithms. First round focused on algorithms, testing data structures and optimization. Second round was system design, discussing scalability in distributed systems.",
+        Tags:       []string{"algorithms", "system design", "distributed systems"},
+        CreateTime: "2024-02-10",
+    },
+    {
+        ID:         "2",
+        Company:    "Amazon",
+        Position:   "Senior Software Engineer",
+        ContentZH:  "亚马逊的面试强调领导力准则。技术面试包括编码和系统设计，特别关注可扩展性和性能优化。",
+        ContentEN:  "Amazon's interview emphasizes leadership principles. Technical interviews included coding and system design, with focus on scalability and performance optimization.",
+        Tags:       []string{"leadership", "system design", "performance"},
+        CreateTime: "2024-02-09",
+    },
+    {
+        ID:         "3",
+        Company:    "Microsoft",
+        Position:   "Software Engineer",
+        ContentZH:  "微软的面试包括四轮技术面试，涵盖算法、数据结构和系统设计。特别注重问题解决能力和代码质量。",
+        ContentEN:  "Microsoft's interview included four technical rounds covering algorithms, data structures, and system design. Strong emphasis on problem-solving and code quality.",
+        Tags:       []string{"algorithms", "problem solving", "code quality"},
+        CreateTime: "2024-02-08",
+    },
+}
+
+var SampleServices = []Service{
+    {
+        ID:     "1",
+        NameZH: "面试辅导",
+        NameEN: "Interview Coaching",
+        DescZH: "一对一面试辅导，帮助你准备技术面试。包括算法训练、系统设计讨论和模拟面试。",
+        DescEN: "One-on-one interview coaching to help you prepare for technical interviews. Includes algorithm training, system design discussions, and mock interviews.",
+        Price:  "Contact for pricing",
+    },
+    {
+        ID:     "2",
+        NameZH: "简历优化",
+        NameEN: "Resume Optimization",
+        DescZH: "专业的简历审查和优化服务，确保你的简历突出关键技能和成就。",
+        DescEN: "Professional resume review and optimization service to ensure your resume highlights key skills and achievements.",
+        Price:  "Contact for pricing",
+    },
+    {
+        ID:     "3",
+        NameZH: "技术指导",
+        NameEN: "Technical Mentoring",
+        DescZH: "针对性的技术指导，帮助你掌握面试中常见的技术主题和最佳实践。",
+        DescEN: "Targeted technical mentoring to help you master common interview topics and best practices.",
+        Price:  "Contact for pricing",
+    },
+}

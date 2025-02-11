@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: interview-help-backend
+    env: docker
+    buildCommand: docker build -t interview-help-backend .
+    startCommand: docker run -p 8000:8000 interview-help-backend
+    envVars:
+      - key: PORT
+        value: 8000
