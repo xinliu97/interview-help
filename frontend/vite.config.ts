@@ -8,12 +8,17 @@ export default defineConfig({
   server: {
     port: 4173,
     strictPort: true,
-    cors: true
+    cors: true,
+    host: true,
+    fs: {
+      strict: false
+    }
   },
   preview: {
     port: 4173,
     strictPort: true,
-    cors: true
+    cors: true,
+    host: true
   },
   resolve: {
     alias: {
