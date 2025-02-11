@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Allow crawling of all content
+Sitemap: https://your-domain.com/sitemap.xml
