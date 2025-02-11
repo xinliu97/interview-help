@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 
 const Header = () => {
@@ -7,10 +8,10 @@ const Header = () => {
   const [language, setLanguage] = useState<'zh' | 'en'>('zh')
 
   const menuItems = [
-    { zh: '主页', en: 'Home', href: '/' },
-    { zh: '服务', en: 'Services', href: '/services' },
-    { zh: '面试真题', en: 'Cases', href: '/interviews' },
-    { zh: '联系我', en: 'Contact', href: '/contact' },
+    { zh: '主页', en: 'Home', href: '#/' },
+    { zh: '服务', en: 'Services', href: '#/services' },
+    { zh: '面试真题', en: 'Cases', href: '#/interviews' },
+    { zh: '联系我', en: 'Contact', href: '#/contact' },
   ]
 
   return (
@@ -18,7 +19,7 @@ const Header = () => {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <a href="/" className="text-xl font-bold">
+            <a href="#/" className="text-xl font-bold">
               Interview Help
             </a>
           </div>
@@ -26,13 +27,13 @@ const Header = () => {
           {/* Desktop menu */}
           <div className="hidden md:flex items-center space-x-4">
             {menuItems.map((item) => (
-              <a
+              <Link
                 key={item.href}
-                href={item.href}
+                to={item.href}
                 className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium"
               >
                 {language === 'zh' ? item.zh : item.en}
-              </a>
+              </Link>
             ))}
             <Button
               variant="ghost"
@@ -60,13 +61,13 @@ const Header = () => {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {menuItems.map((item) => (
-                <a
+                <Link
                   key={item.href}
-                  href={item.href}
+                  to={item.href}
                   className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
                 >
                   {language === 'zh' ? item.zh : item.en}
-                </a>
+                </Link>
               ))}
               <Button
                 variant="ghost"
