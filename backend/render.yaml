@@ -1,9 +1,21 @@
 services:
   - type: web
     name: interview-help-backend
-    env: docker
-    buildCommand: docker build -t interview-help-backend .
-    startCommand: docker run -p 8000:8000 interview-help-backend
+    runtime: go
+    buildCommand: |
+      go mod download
+      CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
+    startCommand: ./app
     envVars:
       - key: PORT
         value: 8000
+      - key: ENV
+        value: production
+      - key: ALLOWED_ORIGINS
+        value: https://interview-experience-website-koqtpmwx.devinapps.com,http://localhost:4173,http://localhost:5173
+      - key: GIN_MODE
+        value: release
+    healthCheckPath: /api/services
+    autoDeploy: true
+    plan: free
+    region: singapore
