@@ -54,5 +54,6 @@ export const createInterview = async (interview: Omit<Interview, 'id' | 'create_
   if (!response.ok) throw new Error('Failed to create interview')
   const data: ApiResponse<Interview> = await response.json()
   if (data.error) throw new Error(data.error)
+  if (!data.data) throw new Error('No data returned from server')
   return data.data
 }
